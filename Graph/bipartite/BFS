@@ -1,0 +1,33 @@
+// Use the concept of finding cycle in undirected graph.
+
+Using BFS:
+ 1. Take a queue of pair<int,int> and insert the node and its parent node.
+ 2. Update the color of all the adjacent nodes using !color[parent].
+ 3. Now run through the loop until the queue is empty.
+ 4. If, the adjacent node is already visited then check if the color of the adjacent node is equal to the parent's, if it so then bipartite is not possible.
+ 
+ Code:
+  
+  bool bfs(vector<vector<int>> &g,int node,vector<int> &visited,vector<int> &color){
+        
+        
+        queue<pair<int,int>> q;
+        q.push({node,-1});
+        
+        color[node] = 1;
+        
+        while(!q.empty()){
+            int i = q.front().first;
+            int j = q.front().second;
+            q.pop();
+            for(auto &x : g[i]){
+                if(!visited[x]){
+                    color[x] = !color[i];
+                    visited[x] = 1;  
+                    q.push({x,i});
+                }
+                else if(color[x] == color[i])return false;
+            }
+        }
+        return true;
+    }
