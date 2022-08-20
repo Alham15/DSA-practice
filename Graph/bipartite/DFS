@@ -1,0 +1,23 @@
+// Use the concept of finding cycle in undirected graph.
+
+Using DFS:
+ 1. Recursively check if bipartite is possible or not.
+ 2. Update the color of all the adjacent nodes using !color[parent].
+ 3. Now call the dfs for the adjacent nodes.
+ 4. If, the adjacent node is already visited then check if the color of the adjacent node is equal to the parent's, if it so then bipartite is not possible.
+ 
+ Code:
+  
+  bool dfs(vector<vector<int>> &g,int node,vector<int> &visited,vector<int> &color){
+        
+         bool c = true;
+         visited[node] = 1;
+         for(auto &x : g[node]){
+            if(!visited[x]){
+                color[x] = !color[node];
+                if(!dfs(g,x,visited,color))return c & false;
+            }
+            else if(color[x] == color[node])return c & false;
+        }
+        return c;
+    }
