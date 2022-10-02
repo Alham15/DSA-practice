@@ -1,0 +1,12 @@
+// https://practice.geeksforgeeks.org/problems/minimum-characters-to-be-added-at-front-to-make-string-palindrome/1
+
+GFG POTD Question
+
+Steps Involved:
+1. Analysis of the problem statement
+2. Finding a pattern
+3. Understanding the constraints
+4. Dry run
+5. str ="abbac"
+
+take two pointer and loop through the string and compare the characters
